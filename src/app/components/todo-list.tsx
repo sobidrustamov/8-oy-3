@@ -1,33 +1,19 @@
 "use client";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addTodo } from "@/redux/todo-reduser/todoReduser";
+import React from "react";
+import {  useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import TodoForm from "@/components/form";
 
 export const TodoList = () => {
   const { todos } = useSelector((state: RootState) => state.todos);
-  const [add, setAdd] = React.useState("");
-  // useEffect(() => {}, [add]);
 
-  const dispatch = useDispatch();
-  console.log(todos);
 
   return (
     <div>
-      <input
-        defaultValue={add}
-        onChange={(e) => setAdd(e.target.value)}
-        type="text"
-        placeholder="..."
-      />
-      <button
-        onClick={() =>dispatch(addTodo({ newTodo: add }))}
-      >
-        Add
-      </button>
+      <TodoForm />
       <div>
         {todos?.map((item, i) => (
-          <h2 key={i}>{item}</h2>
+          <h2 key={i}>{item.fName}</h2>
         ))}
       </div>
     </div>
